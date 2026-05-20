@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Skinora | Skin & Hair Quiz</title>
+
+<style>
+body{
+  font-family:'Segoe UI',sans-serif;
+  margin:0;
+  background:linear-gradient(to bottom,#fff0f5,#fce4ec);
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(to right,#f8bbd0,#f48fb1);
+  padding:40px 20px;
+  text-align:center;
+  color:white;
+}
+header h1{
+  margin:0;
+  font-size:36px;
+}
+header p{
+  margin-top:10px;
+  font-size:18px;
+}
+
+/* HERO IMAGE */
+.hero{
+  max-width:900px;
+  margin:30px auto 0;
+}
+.hero img{
+  width:100%;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* FORM CONTAINER */
+.container{
+  max-width:800px;
+  margin:40px auto;
+  background:white;
+  padding:40px;
+  border-radius:18px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.12);
+}
+
+.section-title{
+  color:#d81b60;
+  margin-bottom:15px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+label{
+  display:block;
+  margin-top:15px;
+  font-weight:500;
+}
+
+input, textarea{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+
+.options{
+  margin-top:8px;
+}
+.options label{
+  display:inline-block;
+  margin-right:20px;
+  margin-top:8px;
+  font-weight:400;
+}
+
+/* BUTTONS */
+.btn{
+  background:#d81b60;
+  color:white;
+  padding:14px 34px;
+  border:none;
+  border-radius:30px;
+  font-size:17px;
+  cursor:pointer;
+  margin-top:30px;
+}
+.btn:hover{
+  background:#c2185b;
+}
+
+/* INFO CARDS */
+.info-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  margin-top:40px;
+}
+.card{
+  background:#fce4ec;
+  padding:20px;
+  border-radius:14px;
+  text-align:center;
+}
+.card img{
+  width:60px;
+  margin-bottom:10px;
+}
+.card p{
+  font-size:14px;
+  color:#555;
+}
+
+/* FOOTER NOTE */
+.note{
+  text-align:center;
+  margin-top:30px;
+  font-size:14px;
+  color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Skinora Quiz</h1>
+  <p>Smart Skin & Hair Analysis for Personalized Care</p>
+</header>
+
+<!-- HERO IMAGE -->
+<div class="hero">
+  <img src="C:\Users\PRIYA D MORE\OneDrive\Desktop\cosmetic-care\images\skin care banner.jpg" alt="Skin & Hair Care">
+</div>
+
+<!-- FORM -->
+<div class="container">
+
+  <h2 class="section-title">👤 Personal Details</h2>
+
+  <label>Full Name
+    <input type="text" id="name" placeholder="Enter your full name">
+  </label>
+
+  <label>Email Address
+    <input type="email" id="email" placeholder="Enter your email">
+  </label>
+
+  <label>Gender</label>
+  <div class="options">
+    <label><input type="radio" name="gender" value="Male"> Male</label>
+    <label><input type="radio" name="gender" value="Female"> Female</label>
+    <label><input type="radio" name="gender" value="Other"> Other</label>
+  </div>
+
+  <hr style="margin:30px 0;">
+
+  <h2 class="section-title">🧴 Skin & Hair Details</h2>
+
+  <label>Skin Type</label>
+  <div class="options">
+    <label><input type="radio" name="skin" value="Oily"> Oily</label>
+    <label><input type="radio" name="skin" value="Dry"> Dry</label>
+    <label><input type="radio" name="skin" value="Combination"> Combination</label>
+    <label><input type="radio" name="skin" value="Sensitive"> Sensitive</label>
+  </div>
+
+  <label>Main Problems</label>
+  <div class="options">
+    <label><input type="checkbox" value="Acne"> Acne</label>
+    <label><input type="checkbox" value="Pigmentation"> Pigmentation</label>
+    <label><input type="checkbox" value="Dark Spots"> Dark Spots</label>
+    <label><input type="checkbox" value="Dull Skin"> Dull Skin</label>
+    <label><input type="checkbox" value="Fine Lines"> Fine Lines</label>
+    <label><input type="checkbox" value="Hair Fall"> Hair Fall</label>
+    <label><input type="checkbox" value="Dandruff"> Dandruff</label>
+    <label><input type="checkbox" value="Dry Scalp"> Dry Scalp</label>
+    <label><input type="checkbox" value="Sensitive Skin"> Sensitive Skin</label>
+  </div>
+
+  <label>Any Other Issue
+    <textarea id="issue" placeholder="Write here..."></textarea>
+  </label>
+
+  <center>
+    <button class="btn" onclick="getResult()">Get My Skinora Report</button>
+  </center>
+
+  <!-- INFO CARDS -->
+  <div class="info-cards">
+    <div class="card">
+      <img src="C:\Users\PRIYA D MORE\OneDrive\Desktop\cosmetic-care\images\skin analysis.jpg">
+      <p>Personalized Analysis</p>
+    </div>
+    <div class="card">
+      <img src="C:\Users\PRIYA D MORE\OneDrive\Desktop\cosmetic-care\images\ingredients.jpg">
+      <p>Ingredient-Based Guidance</p>
+    </div>
+    <div class="card">
+      <img src="C:\Users\PRIYA D MORE\OneDrive\Desktop\cosmetic-care\images\routine.jpg">
+      <p>Easy Daily Routine</p>
+    </div>
+  </div>
+
+  <p class="note">🔒 Your data is safe & used only for analysis.</p>
+
+</div>
+
+<script>
+function getResult(){
+
+  const name=document.getElementById("name").value.trim();
+  const email=document.getElementById("email").value.trim();
+  const gender=document.querySelector('input[name="gender"]:checked');
+  const skin=document.querySelector('input[name="skin"]:checked');
+  const issues=document.getElementById("issue").value;
+
+  const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailPattern.test(email)){
+    alert("Please enter a valid email");
+    return;
+  }
+
+  if(!name||!gender||!skin){
+    alert("Please fill all required fields");
+    return;
+  }
+
+  let problems=[];
+  document.querySelectorAll('input[type="checkbox"]:checked')
+    .forEach(p=>problems.push(p.value));
+
+  localStorage.setItem("skinoraData",JSON.stringify({
+    name,email,
+    gender:gender.value,
+    skinType:skin.value,
+    problems,issues
+  }));
+
+  window.location.href="result.html";
+}
+</script>
+
+</body>
+</html>

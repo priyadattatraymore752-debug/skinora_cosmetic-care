@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Skinora | Feedback</title>
+
+<style>
+body{
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(to bottom,#fff0f5,#fde4ec);
+  margin:0;
+}
+header{
+  background:linear-gradient(to right,#f8bbd0,#f48fb1);
+  padding:35px;
+  text-align:center;
+  color:white;
+}
+.container{
+  max-width:650px;
+  margin:40px auto;
+  background:white;
+  padding:35px;
+  border-radius:20px;
+  box-shadow:0 12px 35px rgba(0,0,0,0.15);
+  text-align:center;
+}
+img{
+  width:110px;
+  margin-bottom:15px;
+}
+label{
+  display:block;
+  text-align:left;
+  margin-top:15px;
+  font-weight:500;
+}
+input,textarea{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
+textarea{ resize:none; }
+.buttons{
+  display:flex;
+  justify-content:space-between;
+  margin-top:25px;
+}
+button{
+  background:#d81b60;
+  color:white;
+  padding:12px 28px;
+  border:none;
+  border-radius:30px;
+  font-size:15px;
+  cursor:pointer;
+}
+button.secondary{
+  background:#f3b2c8;
+  color:#6a1b4d;
+}
+button:hover{ opacity:0.9; }
+#thankyou{
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Skinora Feedback</h1>
+  <p>Your opinion helps us improve 💖</p>
+</header>
+
+<div class="container">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3059/3059518.png" alt="Feedback">
+
+<div id="form">
+<label>Your Name
+<input type="text" id="fname" placeholder="Enter your name">
+</label>
+
+<label>Your Feedback
+<textarea id="feedback" rows="4" placeholder="Write your feedback here..."></textarea>
+</label>
+
+<div class="buttons">
+  <button class="secondary" onclick="goBack()">← Back</button>
+  <button onclick="submitFeedback()">Submit</button>
+</div>
+</div>
+
+<div id="thankyou">
+  <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="120">
+  <h2>🙏 Thank You!</h2>
+  <p>Your feedback has been submitted successfully.</p>
+  <p>✨ Stay beautiful with <b>Skinora</b> ✨</p>
+
+  <br>
+  <button onclick="goHome()">Go to Home</button>
+</div>
+
+</div>
+
+<script>
+function submitFeedback(){
+  const name = document.getElementById("fname").value.trim();
+  const fb = document.getElementById("feedback").value.trim();
+
+  if(!name || !fb){
+    alert("Please fill all fields");
+    return;
+  }
+
+  document.getElementById("form").style.display="none";
+  document.getElementById("thankyou").style.display="block";
+}
+
+function goBack(){
+  window.location.href="routine.html";
+}
+function goHome(){
+  window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Skinora | Daily Routine</title>
+
+<style>
+body{
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(to bottom,#fff0f5,#fde4ec);
+  margin:0;
+}
+header{
+  background:linear-gradient(to right,#f8bbd0,#f48fb1);
+  padding:35px;
+  text-align:center;
+  color:white;
+}
+.container{
+  max-width:950px;
+  margin:30px auto;
+  background:white;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+.section{
+  margin-bottom:40px;
+}
+.section h2{
+  color:#c2185b;
+  margin-bottom:15px;
+}
+.card{
+  background:#fce4ec;
+  padding:25px;
+  border-radius:16px;
+}
+.step{
+  display:flex;
+  align-items:center;
+  margin:14px 0;
+  background:#fff;
+  padding:14px 18px;
+  border-radius:12px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.08);
+}
+.step img{
+  width:45px;
+  margin-right:15px;
+}
+.buttons{
+  display:flex;
+  justify-content:space-between;
+  margin-top:30px;
+}
+button{
+  background:#d81b60;
+  color:white;
+  padding:14px 34px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+}
+button.secondary{
+  background:#f3b2c8;
+  color:#6a1b4d;
+}
+button:hover{opacity:0.9;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Skinora Daily Care Routine</h1>
+  <p>Your Personalized Morning, Night & Weekly Plan</p>
+</header>
+
+<div class="container" id="routineOutput"></div>
+
+<script>
+const data = JSON.parse(localStorage.getItem("skinoraData"));
+
+if(!data){
+  document.getElementById("routineOutput").innerHTML="No Data Found";
+}else{
+
+let morning=[], night=[], weekly=[];
+
+/* ---------- BASE ROUTINE (ALL USERS) ---------- */
+morning.push(
+  ["Gentle Cleanser","https://cdn-icons-png.flaticon.com/512/2907/2907253.png"],
+  ["Moisturizer","https://cdn-icons-png.flaticon.com/512/3082/3082036.png"],
+  ["Sunscreen SPF 50","https://cdn-icons-png.flaticon.com/512/4005/4005901.png"]
+);
+
+night.push(
+  ["Cleanser","https://cdn-icons-png.flaticon.com/512/2907/2907253.png"],
+  ["Moisturizer","https://cdn-icons-png.flaticon.com/512/3082/3082036.png"]
+);
+
+weekly.push(
+  ["Face Mask – 2 times/week","https://cdn-icons-png.flaticon.com/512/2920/2920277.png"]
+);
+
+/* ---------- SKIN TYPE BASED ---------- */
+if(data.skinType==="Dry"){
+  morning.push(["Hyaluronic Acid Serum","https://cdn-icons-png.flaticon.com/512/1047/1047711.png"]);
+  night.push(["Nourishing Cream","https://cdn-icons-png.flaticon.com/512/3082/3082036.png"]);
+}
+
+if(data.skinType==="Oily"){
+  morning.push(["Niacinamide Serum","https://cdn-icons-png.flaticon.com/512/1047/1047711.png"]);
+}
+
+if(data.skinType==="Sensitive"){
+  night.push(["Soothing Gel","https://cdn-icons-png.flaticon.com/512/4163/4163627.png"]);
+}
+
+/* ---------- PROBLEM BASED ---------- */
+data.problems.forEach(p=>{
+  if(p==="Acne"){
+    night.push(["Salicylic Acid Treatment","https://cdn-icons-png.flaticon.com/512/599/599502.png"]);
+  }
+  if(p==="Pigmentation" || p==="Dark Spots"){
+    morning.push(["Vitamin C Serum","https://cdn-icons-png.flaticon.com/512/1047/1047711.png"]);
+  }
+  if(p==="Fine Lines"){
+    night.push(["Beginner Retinol (2–3x/week)","https://cdn-icons-png.flaticon.com/512/2966/2966486.png"]);
+  }
+  if(p==="Hair Fall"){
+    weekly.push(["Hair Oil Massage – 2x/week","https://cdn-icons-png.flaticon.com/512/2966/2966492.png"]);
+    night.push(["Hair Growth Serum","https://cdn-icons-png.flaticon.com/512/2966/2966492.png"]);
+  }
+  if(p==="Dandruff"){
+    weekly.push(["Anti-Dandruff Shampoo","https://cdn-icons-png.flaticon.com/512/2966/2966492.png"]);
+  }
+});
+
+/* ---------- REMOVE DUPLICATES ---------- */
+const unique = arr => arr.filter((v,i,a)=>a.findIndex(t=>t[0]===v[0])===i);
+morning = unique(morning);
+night = unique(night);
+weekly = unique(weekly);
+
+/* ---------- OUTPUT ---------- */
+document.getElementById("routineOutput").innerHTML=`
+<h2>Hello ${data.name} 👋</h2>
+
+<div class="section">
+  <h2>🌞 Morning Routine</h2>
+  <div class="card">
+    ${morning.map(s=>`
+      <div class="step">
+        <img src="${s[1]}">
+        <span>${s[0]}</span>
+      </div>
+    `).join("")}
+  </div>
+</div>
+
+<div class="section">
+  <h2>🌙 Night Routine</h2>
+  <div class="card">
+    ${night.map(s=>`
+      <div class="step">
+        <img src="${s[1]}">
+        <span>${s[0]}</span>
+      </div>
+    `).join("")}
+  </div>
+</div>
+
+<div class="section">
+  <h2>🗓 Weekly Care</h2>
+  <div class="card">
+    ${weekly.map(s=>`
+      <div class="step">
+        <img src="${s[1]}">
+        <span>${s[0]}</span>
+      </div>
+    `).join("")}
+  </div>
+</div>
+
+<div class="buttons">
+  <button class="secondary" onclick="goBack()">← Back</button>
+  <button onclick="goFeedback()">Give Feedback →</button>
+</div>
+`;
+}
+
+function goFeedback(){
+  window.location.href="feedback.html";
+}
+function goBack(){
+  window.location.href="result.html";
+}
+</script>
+
+</body>
+</html>
